@@ -44,11 +44,10 @@ def get_homeworks(current_timestamp):
         if homework_statuses.status_code != 200:
             homework_statuses.raise_for_status()            
         else:
-            raise requests.exceptions.HTTPError
+            raise requests.exceptions.RequestException
     except requests.exceptions.RequestException as error:        
         print(error)    
     return homework_statuses.json()
-
 
 def send_message(message):
     try:        
