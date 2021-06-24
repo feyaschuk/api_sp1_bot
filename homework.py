@@ -39,11 +39,14 @@ def parse_homework_status(homework):
 
 def get_homeworks(current_timestamp):   
     params = {'from_date': current_timestamp}
-    homework_statuses = requests.get(URL, headers=HEADERS, params=params)
     try:
-        homework_statuses.raise_for_status()        
-    except requests.exceptions.HTTPError as error:
-        print('Не удалось выполнить запрос. Ошибка: {error}')    
+        homework_statuses = requests.get(URL, headers=HEADERS, params=params)
+        if homework_statuses.status_code != 200:
+            homework_statuses.raise_for_status()            
+        else:
+            raise requests.exceptions.HTTPError
+    except requests.exceptions.RequestException as error:        
+        print(error)    
     return homework_statuses.json()
 
 
