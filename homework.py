@@ -8,7 +8,19 @@ from telegram import Bot
 
 load_dotenv()
 
-PRAKTIKUM_TOKEN = 'OAuth ' + os.environ['PRAKTIKUM_TOKEN']
+logging.basicConfig(
+    level=logging.DEBUG,
+    filename='homework.log',
+    filemode='a',
+    format='%(asctime)s, %(levelname)s, %(message)s, %(name)s',)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+try:
+    PRAKTIKUM_TOKEN = 'OAuth ' + os.environ['PRAKTIKUM_TOKEN']
+except Exception as e:
+    logging.error(e, exc_info=True)
+
 TELEGRAM_TOKEN = os.environ['TELEGRAM_TOKEN']
 CHAT_ID = os.environ['TELEGRAM_CHAT_ID']
 HEADERS = {"Authorization": PRAKTIKUM_TOKEN}
@@ -17,14 +29,6 @@ TIME_SLEEP = 20 * 60
 TIME_SLEEP_EXCEPTION = 5
 
 bot = Bot(token=TELEGRAM_TOKEN)
-
-logging.basicConfig(
-    level=logging.DEBUG,
-    filename='homework.log',
-    filemode='a',
-    format='%(asctime)s, %(levelname)s, %(message)s, %(name)s',)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
 
 
 def parse_homework_status(homework):
@@ -35,7 +39,7 @@ def parse_homework_status(homework):
             raise Exception('Нет названия работы или статуса проверки')
     except Exception as e:
         logging.error(e, exc_info=True)
-    statuses ={
+    statuses = {
         'rejected': 'К сожалению, в работе нашлись ошибки.',
         'reviewing': 'Работа взята в ревью.',
         'approved': 'Ревьюеру всё понравилось, работа зачтена!'}
@@ -54,7 +58,7 @@ def get_homeworks(current_timestamp):
         else:
             raise requests.exceptions.RequestException
     except requests.exceptions.RequestException as e:
-         logging.error(e, exc_info=True)
+        logging.error(e, exc_info=True)
     return homework_statuses.json()
 
 
@@ -67,7 +71,6 @@ def send_message(message):
 
 def main():
     try:
-        #current_timestamp = 162304970
         current_timestamp = int(time.time())
     except ValueError:
         logging.error("Дата должна быть в формате Unix")
@@ -75,7 +78,7 @@ def main():
     while True:
         try:
             homeworks = get_homeworks((current_timestamp))
-            homework = homeworks.get("homeworks")[0]            
+            homework = homeworks.get("homeworks")[0]
             message = parse_homework_status(homework)
             send_message(message)
             time.sleep(TIME_SLEEP)
@@ -86,7 +89,7 @@ def main():
         except Exception as e:
             logging.error(f'Бот упал с ошибкой: {e}', exc_info=True)
             message = (f'Бот упал с ошибкой:{e}')
-            send_message(message)           
+            send_message(message)
             time.sleep(TIME_SLEEP_EXCEPTION)
 
 
