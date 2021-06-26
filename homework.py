@@ -18,18 +18,20 @@ logger.setLevel(logging.INFO)
 
 try:
     PRAKTIKUM_TOKEN = 'OAuth ' + os.environ['PRAKTIKUM_TOKEN']
+    TELEGRAM_TOKEN = os.environ['TELEGRAM_TOKEN']
+    CHAT_ID = os.environ['TELEGRAM_CHAT_ID']
+    HEADERS = {"Authorization": PRAKTIKUM_TOKEN}
+    URL = 'https://praktikum.yandex.ru/api/user_api/homework_statuses/'
+    TIME_SLEEP = 20 * 60
+    TIME_SLEEP_EXCEPTION = 5
 except Exception as e:
     logging.error(e, exc_info=True)
 
-TELEGRAM_TOKEN = os.environ['TELEGRAM_TOKEN']
-CHAT_ID = os.environ['TELEGRAM_CHAT_ID']
-HEADERS = {"Authorization": PRAKTIKUM_TOKEN}
-URL = 'https://praktikum.yandex.ru/api/user_api/homework_statuses/'
-TIME_SLEEP = 20 * 60
-TIME_SLEEP_EXCEPTION = 5
 
-bot = Bot(token=TELEGRAM_TOKEN)
-
+try:
+    bot = Bot(token=TELEGRAM_TOKEN)
+except Exception as e:
+    logging.error(e, exc_info=True)
 
 def parse_homework_status(homework):
     try:
@@ -71,7 +73,8 @@ def send_message(message):
 
 def main():
     try:
-        current_timestamp = int(time.time())
+        #current_timestamp = int(time.time())
+        current_timestamp = 1621604970
     except ValueError:
         logging.error("Дата должна быть в формате Unix")
         time.sleep(TIME_SLEEP)
