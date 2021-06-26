@@ -18,15 +18,14 @@ logger.setLevel(logging.INFO)
 
 try:
     PRAKTIKUM_TOKEN = 'OAuth ' + os.environ['PRAKTIKUM_TOKEN']
+    TELEGRAM_TOKEN = os.environ['TELEGRAM_TOKEN']
+    CHAT_ID = os.environ['TELEGRAM_CHAT_ID']
+    HEADERS = {"Authorization": PRAKTIKUM_TOKEN}
+    URL = 'https://praktikum.yandex.ru/api/user_api/homework_statuses/'
+    TIME_SLEEP = 20 * 60
+    TIME_SLEEP_EXCEPTION = 5
 except Exception as e:
     logging.error(e, exc_info=True)
-TELEGRAM_TOKEN = os.environ['TELEGRAM_TOKEN']
-CHAT_ID = os.environ['TELEGRAM_CHAT_ID']
-HEADERS = {"Authorization": PRAKTIKUM_TOKEN}
-URL = 'https://praktikum.yandex.ru/api/user_api/homework_statuses/'
-TIME_SLEEP = 20 * 60
-TIME_SLEEP_EXCEPTION = 5
-
 
 
 try:
