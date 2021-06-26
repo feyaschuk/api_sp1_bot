@@ -33,6 +33,7 @@ try:
 except Exception as e:
     logging.error(e, exc_info=True)
 
+
 def parse_homework_status(homework):
     try:
         homework_name = homework.get("homework_name")
@@ -73,8 +74,7 @@ def send_message(message):
 
 def main():
     try:
-        #current_timestamp = int(time.time())
-        current_timestamp = 1621604970
+        current_timestamp = int(time.time())
     except ValueError:
         logging.error("Дата должна быть в формате Unix")
         time.sleep(TIME_SLEEP)
