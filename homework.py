@@ -6,6 +6,8 @@ import requests
 from dotenv import load_dotenv
 from telegram import Bot
 
+
+
 load_dotenv()
 
 logging.basicConfig(
@@ -22,6 +24,8 @@ try:
     CHAT_ID = os.environ['TELEGRAM_CHAT_ID']
     HEADERS = {"Authorization": PRAKTIKUM_TOKEN}
     URL = 'https://praktikum.yandex.ru/api/user_api/homework_statuses/'
+    
+    
     TIME_SLEEP = 20 * 60
     TIME_SLEEP_EXCEPTION = 5
 except Exception as e:
@@ -91,10 +95,7 @@ def main():
             time.sleep(TIME_SLEEP)
         except Exception as e:
             logging.error(f'Бот упал с ошибкой: {e}', exc_info=True)
-            message = (f'Бот упал с ошибкой:{e}')
-            send_message(message)
-            time.sleep(TIME_SLEEP_EXCEPTION)
-
+           
 
 if __name__ == '__main__':
     main()
