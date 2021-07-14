@@ -93,8 +93,8 @@ def main():
             time.sleep(TIME_SLEEP) 
         except Exception as e: 
             logging.error(f'Бот упал с ошибкой: {e}', exc_info=True) 
-            message = (f'Бот упал с ошибкой:{e}') 
-            send_message(message) 
+            
+            
             time.sleep(TIME_SLEEP_EXCEPTION) 
  
  
