@@ -39,7 +39,7 @@ def parse_homework_status(homework):
         homework_name = homework.get("homework_name") 
         homework_status = homework.get("status") 
         if homework_name or homework_status is None: 
-            raise Exception('Нет названия работы или статуса проверки') 
+            print('Нет названия работы или статуса проверки') 
     except Exception as e: 
         logging.error(e, exc_info=True) 
     statuses = { 
@@ -59,7 +59,7 @@ def get_homeworks(current_timestamp):
         if homework_statuses.status_code != 200: 
             homework_statuses.raise_for_status() 
         else: 
-            raise requests.exceptions.RequestException 
+            print("Нет работ на проверке")
     except requests.exceptions.RequestException as e: 
         logging.error(e, exc_info=True) 
     return homework_statuses.json() 
