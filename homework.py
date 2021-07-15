@@ -69,14 +69,9 @@ def main():
                     send_message(message) 
 
             time.sleep(TIME_SLEEP) 
-        except IndexError: 
-            send_message("Нет работ на проверке") 
-            time.sleep(TIME_SLEEP) 
-        except Exception as e: 
-            message = (f'{e}')              
-            send_message(message) 
+        
+        except Exception as e:      
             logging.error(e, exc_info=True) 
-
             print(f'Бот упал с ошибкой: {e}') 
             time.sleep(TIME_SLEEP_EXCEPTION) 
  
