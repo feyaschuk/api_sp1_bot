@@ -56,9 +56,9 @@ def send_message(message):
  
  
 def main(): 
-    current_timestamp = int(time.time()) 
+    #current_timestamp = int(time.time()) 
 
-    #current_timestamp = 1622604970  # Начальное значение timestamp 
+    current_timestamp = 1625604970  # Начальное значение timestamp 
     while True: 
         try: 
             homeworks = get_homeworks(current_timestamp) 
