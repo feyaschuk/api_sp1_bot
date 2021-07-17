@@ -74,8 +74,8 @@ def send_message(message):
  
 def main(): 
     try: 
-        current_timestamp = 1625604970  # Начальное значение timestamp 
-        #current_timestamp = int(time.time()) 
+        #current_timestamp = 1625604970  # Начальное значение timestamp 
+        current_timestamp = int(time.time()) 
     except ValueError: 
         logging.error("Дата должна быть в формате Unix") 
         time.sleep(TIME_SLEEP) 
