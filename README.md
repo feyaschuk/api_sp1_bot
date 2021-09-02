@@ -17,13 +17,17 @@
 Клонировать репозиторий и перейти в него в командной строке:
 ```bash
 git clone https://github.com/feyaschuk/api_sp1_bot.git
-cd api_sp1_bot
+```
 ```bash
-
+cd api_sp1_bot
+```
 Cоздать и активировать виртуальное окружение:
 ```bash
 python3 -m venv env
-source env/bin/activate (Mac OS, Linux)  или source venv/Scripts/activate (Win10)
+```
+```bash
+source env/bin/activate
+```
 ```bash
 python3 -m pip install --upgrade pip
 ```
@@ -31,7 +35,14 @@ python3 -m pip install --upgrade pip
 ```bash
 pip install -r requirements.txt
 ```
-
+Выполнить миграции:
+```bash
+python3 manage.py migrate
+```
+Запустить проект:
+```bash
+python3 manage.py runserver
+```
 В основной директории добавьте файл .env, в котором укажите свои ключи для Praktikuma и Telegramma.
 
 PRAKTIKUM_TOKEN = 
