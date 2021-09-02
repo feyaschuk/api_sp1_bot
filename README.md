@@ -17,10 +17,9 @@
 Клонировать репозиторий и перейти в него в командной строке:
 ```bash
 git clone https://github.com/feyaschuk/api_sp1_bot.git
-
-
 cd api_sp1_bot
 ```bash
+
 Cоздать и активировать виртуальное окружение:
 ```bash
 python3 -m venv env
