@@ -1,1 +1,1 @@
-worker: python rakitin_bot.py
+worker: python homework.py
