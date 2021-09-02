@@ -38,9 +38,9 @@ pip install -r requirements.txt
 
 В основной директории добавьте файл .env, в котором укажите свои ключи для Praktikuma и Telegramma.
 
-PRAKTIKUM_TOKEN = 
-TELEGRAM_TOKEN = 
-TELEGRAM_CHAT_ID =
+* PRAKTIKUM_TOKEN = 
+* TELEGRAM_TOKEN = 
+* TELEGRAM_CHAT_ID =
 
 Запустить проект:
 ```bash
