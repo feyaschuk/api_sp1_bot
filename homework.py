@@ -23,7 +23,7 @@ try:
     HEADERS = {"Authorization": PRAKTIKUM_TOKEN} 
     URL = 'https://practicum.yandex.ru/api/user_api/homework_statuses/' 
     TIME_SLEEP = 20 * 60 
-    TIME_SLEEP_EXCEPTION = 5 
+    TIME_SLEEP_EXCEPTION = 60 
 except Exception as e: 
     logging.error(e, exc_info=True) 
  
