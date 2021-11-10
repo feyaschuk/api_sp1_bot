@@ -21,9 +21,11 @@ try:
     TELEGRAM_TOKEN = os.environ['TELEGRAM_TOKEN'] 
     CHAT_ID = os.environ['TELEGRAM_CHAT_ID'] 
     HEADERS = {"Authorization": PRAKTIKUM_TOKEN} 
+
     URL = 'https://practicum.yandex.ru/api/user_api/homework_statuses/'     
     TIME_SLEEP = 20 * 60 
     TIME_SLEEP_EXCEPTION = 60
+
 except Exception as e: 
     logging.error(e, exc_info=True) 
  
@@ -55,7 +57,7 @@ def parse_homework_status(homework):
 def get_homeworks(current_timestamp): 
     params = {'from_date': current_timestamp} 
     try: 
-        homework_statuses = requests.get(URL, headers=HEADERS, params=params)         
+        homework_statuses = requests.get(URL, headers=HEADERS, params=params)             
         if homework_statuses.status_code != 200: 
             homework_statuses.raise_for_status() 
         else: 
